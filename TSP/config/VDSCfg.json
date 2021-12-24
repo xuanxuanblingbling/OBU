@@ -1,0 +1,29 @@
+{
+    "VEH":
+    {
+        "VehId":"12345678901234567",
+        "VehType":1,
+        "VehLength":"480.0",
+        "VehWidth":"180.0",
+        "VehHigh":"63"
+    },
+    "GNSS":
+    {
+        "RtcmFlag": 0,
+		"Locationsource":0,
+        "Latitude":	400470330,
+		"longtitude":1162877810
+    },
+    "QXWZ":
+    {
+        "AK":"123456789012",
+        "AS":"123456789012346",
+        "GPSName":"/dev/ttymxc2",
+        "GPSName_W":"/dev/ttymxc2",
+        "AppKey": "A4941g3vukcg",
+        "AppSectet": "42628bf4a39e1cad",
+        "Dev_id": "1626000028",
+        "Dev_type": "KB-210-8"
+
+    }
+}
