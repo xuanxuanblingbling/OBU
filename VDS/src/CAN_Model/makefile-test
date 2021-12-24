@@ -1,0 +1,43 @@
+#CC:=/home/wanijv2x/v2x_bin/gcc-4.9-2016.02-x86_64_arm-linux-gnueabi/bin/arm-linux-gnueabi-gcc
+##############################################################
+RSU_HOME=.
+CAN_DIR=$(RSU_HOME)/CAN
+TARGET_PATH=$(RSU_HOME)/
+######################源文件############################################
+C_SRCS :=
+C_SRCS += $(RSU_HOME)/TEST.c
+  
+###################中间文件#############################################
+C_OBJS+=$(patsubst %.c,%.o,$(wildcard $(C_SRCS)))
+###################编译参数#############################################
+CFLAGS += -c
+CFLAGS += -Wall
+CFLAGS += -fPIC
+CFLAGS += -Os
+###################头文件###############################################
+INC_CFLAGS += -I $(RSU_HOME)/CAN/  
+###################链接库###############################################
+
+LDFLAGS += -L $(RSU_HOME)/ -lcan 
+LDFLAGS += -L $(RSU_HOME)/log -llog-dev 
+LDFLAGS += -lpthread
+LDFLAGS += -lm           
+################################# ######################################
+## 编译部分
+#######################################################################
+$(shell mkdir -p $(TARGET_PATH))
+TARGET = $(TARGET_PATH)/CAN_Test
+all:$(TARGET)
+$(C_OBJS):%.o:%.c
+	$(CC) $(CFLAGS) $(INC_CFLAGS) $< -o $@
+$(TARGET):$(C_OBJS)
+	$(CC) $^ -o $@ $(LDFLAGS) 
+#####################################################
+## 清理部分
+#####################################################
+.PHONY:clean
+clean:
+	@echo "start to clean"
+	-rm -f $(C_OBJS)
+	-rm -f $(TARGET)
+	@echo "end to clean"

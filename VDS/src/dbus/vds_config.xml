@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<node name="/dbus/obu/vds">
+  <interface name="dbus.obu.vds.interface">
+    <signal name="VdsVehData">
+       <arg name="databuf"  type="ay"/> 
+    </signal>
+    <signal name="VdsStatePush">
+       <arg name="databuf"  type="ay"/> 
+    </signal>
+    <signal name="VdsFaultPush">
+       <arg name="databuf"  type="ay"/> 
+    </signal>
+    <signal name="McuFaultPush">
+       <arg name="databuf"  type="ay"/> 
+    </signal>
+    <signal name="McuPowerDownRq">
+       <arg name="databuf"  type="ay"/> 
+    </signal>
+    <signal name="VdsConfigRs">
+       <arg name="databuf"  type="ay"/> 
+    </signal>
+    <signal name="McuConfigRs">
+       <arg name="databuf"  type="ay"/> 
+    </signal>
+  </interface>
+</node>
