@@ -1,0 +1,12 @@
+{
+	"BSMTx":	{
+		"wgs2gcj":	0,
+		"randId":	0,
+		"cbrCtrl":	0
+	},
+	"CertM":	{
+		"certUpdate":	0,
+		"hsmType":	0,
+		"caPlatform":	0
+	}
+}

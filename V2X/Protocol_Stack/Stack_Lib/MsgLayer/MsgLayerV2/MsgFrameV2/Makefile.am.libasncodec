@@ -1,0 +1,768 @@
+ASN_MODULE_SRCS=	\
+	BasicSafetyMessage.c	\
+	AccelerationSet4Way.c	\
+	Acceleration.c	\
+	VerticalAcceleration.c	\
+	YawRate.c	\
+	Speed.c	\
+	Heading.c	\
+	CoarseHeading.c	\
+	SteeringWheelAngle.c	\
+	MotionConfidenceSet.c	\
+	HeadingConfidence.c	\
+	SpeedConfidence.c	\
+	SteeringWheelAngleConfidence.c	\
+	Latitude.c	\
+	Longitude.c	\
+	Elevation.c	\
+	PositionConfidenceSet.c	\
+	PositionConfidence.c	\
+	ElevationConfidence.c	\
+	Position3D.c	\
+	SemiMajorAxisAccuracy.c	\
+	SemiMinorAxisAccuracy.c	\
+	SemiMajorAxisOrientation.c	\
+	PositionalAccuracy.c	\
+	PositionOffsetLLV.c	\
+	OffsetLL-B12.c	\
+	OffsetLL-B14.c	\
+	OffsetLL-B16.c	\
+	OffsetLL-B18.c	\
+	OffsetLL-B22.c	\
+	OffsetLL-B24.c	\
+	Position-LL-24B.c	\
+	Position-LL-28B.c	\
+	Position-LL-32B.c	\
+	Position-LL-36B.c	\
+	Position-LL-44B.c	\
+	Position-LL-48B.c	\
+	Position-LLmD-64b.c	\
+	PositionOffsetLL.c	\
+	VerticalOffset.c	\
+	VertOffset-B07.c	\
+	VertOffset-B08.c	\
+	VertOffset-B09.c	\
+	VertOffset-B10.c	\
+	VertOffset-B11.c	\
+	VertOffset-B12.c	\
+	DSecond.c	\
+	DYear.c	\
+	DMonth.c	\
+	DDay.c	\
+	DHour.c	\
+	DMinute.c	\
+	DTimeOffset.c	\
+	DDateTime.c	\
+	MinuteOfTheYear.c	\
+	TimeMark.c	\
+	TimeOffset.c	\
+	TimeConfidence.c	\
+	MapData.c	\
+	NodeList.c	\
+	Node.c	\
+	DescriptiveName.c	\
+	NodeReferenceID.c	\
+	RoadRegulatorID.c	\
+	NodeID.c	\
+	LinkList.c	\
+	Link.c	\
+	MovementList.c	\
+	Movement.c	\
+	LaneList.c	\
+	Lane.c	\
+	LaneID.c	\
+	LaneWidth.c	\
+	ConnectsToList.c	\
+	Connection.c	\
+	ConnectingLane.c	\
+	AllowedManeuvers.c	\
+	LaneAttributes.c	\
+	LaneSharing.c	\
+	LaneTypeAttributes.c	\
+	LaneAttributes-Vehicle.c	\
+	LaneAttributes-Crosswalk.c	\
+	LaneAttributes-Bike.c	\
+	LaneAttributes-Sidewalk.c	\
+	LaneAttributes-Barrier.c	\
+	LaneAttributes-Striping.c	\
+	LaneAttributes-TrackedVehicle.c	\
+	LaneAttributes-Parking.c	\
+	SpeedLimitList.c	\
+	RegulatorySpeedLimit.c	\
+	SpeedLimitType.c	\
+	PointList.c	\
+	RoadPoint.c	\
+	LinkExList.c	\
+	LinkEx.c	\
+	MovementExList.c	\
+	MovementEx.c	\
+	Maneuver.c	\
+	SectionList.c	\
+	Section.c	\
+	SectionId.c	\
+	LaneExList.c	\
+	LaneEx.c	\
+	LaneLineType.c	\
+	Dotted-SolidMarkingLineType.c	\
+	LaneRefID.c	\
+	ConnectsToExList.c	\
+	ConnectionEx.c	\
+	SignalWaitingLane.c	\
+	ConnectingLaneEx.c	\
+	STPointList.c	\
+	ST-Point.c	\
+	ProhibitedZone.c	\
+	MessageFrameExt.c	\
+	ExtMsgID.c	\
+	MessageFrame.c	\
+	MsgCount.c	\
+	PAMData.c	\
+	ParkingLotInfo.c	\
+	AVPType.c	\
+	PAMNodeList.c	\
+	PAMNode.c	\
+	PAMNodeID.c	\
+	PAMNodeAttributes.c	\
+	PAMDriveList.c	\
+	PAMDrive.c	\
+	PAMMovementList.c	\
+	ParkingSlots.c	\
+	ParkingSlot.c	\
+	ParkingSlotPosition.c	\
+	ParkingLock.c	\
+	ParkingSpaceTheta.c	\
+	SlotStatus.c	\
+	ParkingType.c	\
+	ParkingGuide.c	\
+	CLPMM.c	\
+	MemberManagement.c	\
+	RoleInPlatooning.c	\
+	StatusInPlatooning.c	\
+	MemberList.c	\
+	MemberNode.c	\
+	PersonalSafetyMessage.c	\
+	Non-motorData.c	\
+	PersonalDeviceUserType.c	\
+	PropelledInformation.c	\
+	HumanPropelledType.c	\
+	AnimalPropelledType.c	\
+	MotorizedPropelledType.c	\
+	NumberOfParticipantsInCluster.c	\
+	Attachment.c	\
+	PersonalExtensions.c	\
+	PersonalDeviceUsageState.c	\
+	PersonalAssistive.c	\
+	RoadWorkerExtensions.c	\
+	RoadWorkerType.c	\
+	RoadWorkerActivityType.c	\
+	PersonalRequest.c	\
+	PersonalCrossing.c	\
+	RoadsideCoordination.c	\
+	LaneCoordination.c	\
+	VehicleCoordination.c	\
+	CoordinationInfo.c	\
+	DriveSuggestion.c	\
+	RoadSideInformation.c	\
+	RTEList.c	\
+	RTEData.c	\
+	EventSource.c	\
+	EventType.c	\
+	RSITimeDetails.c	\
+	ReferencePathList.c	\
+	ReferencePath.c	\
+	RTSList.c	\
+	RTSData.c	\
+	AuxiliarySign.c	\
+	AuxiliarySignVehicleType.c	\
+	AuxiliarySignDirection.c	\
+	Description.c	\
+	ReferenceLinkList.c	\
+	ReferenceLink.c	\
+	ReferenceLanes.c	\
+	SignType.c	\
+	PathPointList.c	\
+	Radius.c	\
+	RSIPriority.c	\
+	RoadsideSafetyMessage.c	\
+	ParticipantList.c	\
+	ParticipantData.c	\
+	ParticipantType.c	\
+	SourceType.c	\
+	RTCMcorrections.c	\
+	RTCMmsg.c	\
+	RTCM-ID.c	\
+	RTCM-Payload.c	\
+	RTCM-Revision.c	\
+	SensorSharingMsg.c	\
+	DetectedRegion.c	\
+	EquipmentType.c	\
+	DetectedPTCList.c	\
+	DetectedPTCData.c	\
+	PlanningList.c	\
+	Planning.c	\
+	PlanningDuration.c	\
+	AccSet4WayConfidence.c	\
+	AccConfidence.c	\
+	DetectedPTCType.c	\
+	MotorDataExtension.c	\
+	Polygon.c	\
+	Attitude.c	\
+	Pitch.c	\
+	Roll.c	\
+	Yaw.c	\
+	AttitudeConfidence.c	\
+	AngularVelocity.c	\
+	PitchRate.c	\
+	RollRate.c	\
+	AngularVelocityConfidence.c	\
+	AngularVConfidence.c	\
+	Non-motorDataExtension.c	\
+	DetectedObstacleList.c	\
+	DetectedObstacleData.c	\
+	ObstacleType.c	\
+	ObjectSize.c	\
+	SizeValue.c	\
+	ObjectSizeConfidence.c	\
+	SizeValueConfidence.c	\
+	SPAT.c	\
+	IntersectionStateList.c	\
+	IntersectionState.c	\
+	IntersectionStatusObject.c	\
+	PhaseList.c	\
+	Phase.c	\
+	PhaseStateList.c	\
+	PhaseState.c	\
+	LightState.c	\
+	TimeChangeDetails.c	\
+	UTCTiming.c	\
+	TimeCountingDown.c	\
+	PhaseID.c	\
+	TestMsg.c	\
+	BrakeSystemStatus.c	\
+	BrakePedalStatus.c	\
+	BrakeAppliedStatus.c	\
+	BrakeBoostApplied.c	\
+	TractionControlStatus.c	\
+	AntiLockBrakeStatus.c	\
+	StabilityControlStatus.c	\
+	AuxiliaryBrakeStatus.c	\
+	VehicleClassification.c	\
+	BasicVehicleClass.c	\
+	FuelType.c	\
+	VehicleEmergencyExtensions.c	\
+	ResponseType.c	\
+	SirenInUse.c	\
+	LightbarInUse.c	\
+	VehicleSafetyExtensions.c	\
+	PathHistory.c	\
+	FullPositionVector.c	\
+	GNSSstatus.c	\
+	PathHistoryPointList.c	\
+	PathHistoryPoint.c	\
+	PathPrediction.c	\
+	Confidence.c	\
+	RadiusOfCurvature.c	\
+	VehicleSize.c	\
+	VehicleWidth.c	\
+	VehicleLength.c	\
+	VehicleHeight.c	\
+	TransmissionState.c	\
+	VehicleEventFlags.c	\
+	ExteriorLights.c	\
+	VehIntentionAndRequest.c	\
+	IARData.c	\
+	PathPlanning.c	\
+	PathPlanningPoint.c	\
+	DriveBehavior.c	\
+	DriveRequest.c	\
+	ReqInfo.c	\
+	ReqStatus.c	\
+	Req-LaneChange.c	\
+	Req-ClearTheWay.c	\
+	Req-SignalPriority.c	\
+	Req-SensorSharing.c	\
+	ParkingRequest.c	\
+	Req-ParkingArea.c	\
+	VehiclePaymentMessage.c	\
+	RST.c	\
+	PaymentList.c	\
+	ApplicationParameter.c	\
+	PaymentInfo.c	\
+	PaymentEntityID.c	\
+	PaymentInfoType1.c	\
+	TollingNodeInfo.c	\
+	StationOrGantryId.c	\
+	TollingNodeType.c	\
+	TollingDirection.c	\
+	TollInfo.c	\
+	VSI.c	\
+	VPApplicationList.c	\
+	VPApplicationParameter.c	\
+	OBUPaymentInfo.c	\
+	OBUPaymentInfoType1.c	\
+	EquipmentClass.c	\
+	GBICCInfo.c	\
+	OBUInfo.c	\
+	OBUType.c	\
+	OBUMotionStatus.c	\
+	RandStr8.c	\
+	SysInfo.c	\
+	VehicleInfo.c	\
+	VehicleDimensions.c	\
+	TollingPos.c	\
+	PassedPos.c	\
+	PassedSitesInfo.c	\
+	Date.c	\
+	Action-Request.c	\
+	Action-Response.c	\
+	ReturnStatus.c	\
+	TransInfo.c	\
+	GetTollDataRq.c	\
+	GetTollDataRs.c	\
+	RangeOfFile.c	\
+	File.c	\
+	PartOfFile.c	\
+	GetSecureRq.c	\
+	GetSecureRs.c	\
+	SetTollDataRq.c	\
+	TransPara.c	\
+	SetTollDataRs.c	\
+	SetMMIRq.c	\
+	TollResult.c	\
+	AccountInfo.c	\
+	TransCredential.c	\
+	ChannelRq.c	\
+	ChannelRs.c	\
+	ChannelID.c	\
+	ApduList.c
+
+ASN_MODULE_HDRS=	\
+	BasicSafetyMessage.h	\
+	AccelerationSet4Way.h	\
+	Acceleration.h	\
+	VerticalAcceleration.h	\
+	YawRate.h	\
+	Speed.h	\
+	Heading.h	\
+	CoarseHeading.h	\
+	SteeringWheelAngle.h	\
+	MotionConfidenceSet.h	\
+	HeadingConfidence.h	\
+	SpeedConfidence.h	\
+	SteeringWheelAngleConfidence.h	\
+	Latitude.h	\
+	Longitude.h	\
+	Elevation.h	\
+	PositionConfidenceSet.h	\
+	PositionConfidence.h	\
+	ElevationConfidence.h	\
+	Position3D.h	\
+	SemiMajorAxisAccuracy.h	\
+	SemiMinorAxisAccuracy.h	\
+	SemiMajorAxisOrientation.h	\
+	PositionalAccuracy.h	\
+	PositionOffsetLLV.h	\
+	OffsetLL-B12.h	\
+	OffsetLL-B14.h	\
+	OffsetLL-B16.h	\
+	OffsetLL-B18.h	\
+	OffsetLL-B22.h	\
+	OffsetLL-B24.h	\
+	Position-LL-24B.h	\
+	Position-LL-28B.h	\
+	Position-LL-32B.h	\
+	Position-LL-36B.h	\
+	Position-LL-44B.h	\
+	Position-LL-48B.h	\
+	Position-LLmD-64b.h	\
+	PositionOffsetLL.h	\
+	VerticalOffset.h	\
+	VertOffset-B07.h	\
+	VertOffset-B08.h	\
+	VertOffset-B09.h	\
+	VertOffset-B10.h	\
+	VertOffset-B11.h	\
+	VertOffset-B12.h	\
+	DSecond.h	\
+	DYear.h	\
+	DMonth.h	\
+	DDay.h	\
+	DHour.h	\
+	DMinute.h	\
+	DTimeOffset.h	\
+	DDateTime.h	\
+	MinuteOfTheYear.h	\
+	TimeMark.h	\
+	TimeOffset.h	\
+	TimeConfidence.h	\
+	MapData.h	\
+	NodeList.h	\
+	Node.h	\
+	DescriptiveName.h	\
+	NodeReferenceID.h	\
+	RoadRegulatorID.h	\
+	NodeID.h	\
+	LinkList.h	\
+	Link.h	\
+	MovementList.h	\
+	Movement.h	\
+	LaneList.h	\
+	Lane.h	\
+	LaneID.h	\
+	LaneWidth.h	\
+	ConnectsToList.h	\
+	Connection.h	\
+	ConnectingLane.h	\
+	AllowedManeuvers.h	\
+	LaneAttributes.h	\
+	LaneSharing.h	\
+	LaneTypeAttributes.h	\
+	LaneAttributes-Vehicle.h	\
+	LaneAttributes-Crosswalk.h	\
+	LaneAttributes-Bike.h	\
+	LaneAttributes-Sidewalk.h	\
+	LaneAttributes-Barrier.h	\
+	LaneAttributes-Striping.h	\
+	LaneAttributes-TrackedVehicle.h	\
+	LaneAttributes-Parking.h	\
+	SpeedLimitList.h	\
+	RegulatorySpeedLimit.h	\
+	SpeedLimitType.h	\
+	PointList.h	\
+	RoadPoint.h	\
+	LinkExList.h	\
+	LinkEx.h	\
+	MovementExList.h	\
+	MovementEx.h	\
+	Maneuver.h	\
+	SectionList.h	\
+	Section.h	\
+	SectionId.h	\
+	LaneExList.h	\
+	LaneEx.h	\
+	LaneLineType.h	\
+	Dotted-SolidMarkingLineType.h	\
+	LaneRefID.h	\
+	ConnectsToExList.h	\
+	ConnectionEx.h	\
+	SignalWaitingLane.h	\
+	ConnectingLaneEx.h	\
+	STPointList.h	\
+	ST-Point.h	\
+	ProhibitedZone.h	\
+	MessageFrameExt.h	\
+	ExtMsgID.h	\
+	MessageFrame.h	\
+	MsgCount.h	\
+	PAMData.h	\
+	ParkingLotInfo.h	\
+	AVPType.h	\
+	PAMNodeList.h	\
+	PAMNode.h	\
+	PAMNodeID.h	\
+	PAMNodeAttributes.h	\
+	PAMDriveList.h	\
+	PAMDrive.h	\
+	PAMMovementList.h	\
+	ParkingSlots.h	\
+	ParkingSlot.h	\
+	ParkingSlotPosition.h	\
+	ParkingLock.h	\
+	ParkingSpaceTheta.h	\
+	SlotStatus.h	\
+	ParkingType.h	\
+	ParkingGuide.h	\
+	CLPMM.h	\
+	MemberManagement.h	\
+	RoleInPlatooning.h	\
+	StatusInPlatooning.h	\
+	MemberList.h	\
+	MemberNode.h	\
+	PersonalSafetyMessage.h	\
+	Non-motorData.h	\
+	PersonalDeviceUserType.h	\
+	PropelledInformation.h	\
+	HumanPropelledType.h	\
+	AnimalPropelledType.h	\
+	MotorizedPropelledType.h	\
+	NumberOfParticipantsInCluster.h	\
+	Attachment.h	\
+	PersonalExtensions.h	\
+	PersonalDeviceUsageState.h	\
+	PersonalAssistive.h	\
+	RoadWorkerExtensions.h	\
+	RoadWorkerType.h	\
+	RoadWorkerActivityType.h	\
+	PersonalRequest.h	\
+	PersonalCrossing.h	\
+	RoadsideCoordination.h	\
+	LaneCoordination.h	\
+	VehicleCoordination.h	\
+	CoordinationInfo.h	\
+	DriveSuggestion.h	\
+	RoadSideInformation.h	\
+	RTEList.h	\
+	RTEData.h	\
+	EventSource.h	\
+	EventType.h	\
+	RSITimeDetails.h	\
+	ReferencePathList.h	\
+	ReferencePath.h	\
+	RTSList.h	\
+	RTSData.h	\
+	AuxiliarySign.h	\
+	AuxiliarySignVehicleType.h	\
+	AuxiliarySignDirection.h	\
+	Description.h	\
+	ReferenceLinkList.h	\
+	ReferenceLink.h	\
+	ReferenceLanes.h	\
+	SignType.h	\
+	PathPointList.h	\
+	Radius.h	\
+	RSIPriority.h	\
+	RoadsideSafetyMessage.h	\
+	ParticipantList.h	\
+	ParticipantData.h	\
+	ParticipantType.h	\
+	SourceType.h	\
+	RTCMcorrections.h	\
+	RTCMmsg.h	\
+	RTCM-ID.h	\
+	RTCM-Payload.h	\
+	RTCM-Revision.h	\
+	SensorSharingMsg.h	\
+	DetectedRegion.h	\
+	EquipmentType.h	\
+	DetectedPTCList.h	\
+	DetectedPTCData.h	\
+	PlanningList.h	\
+	Planning.h	\
+	PlanningDuration.h	\
+	AccSet4WayConfidence.h	\
+	AccConfidence.h	\
+	DetectedPTCType.h	\
+	MotorDataExtension.h	\
+	Polygon.h	\
+	Attitude.h	\
+	Pitch.h	\
+	Roll.h	\
+	Yaw.h	\
+	AttitudeConfidence.h	\
+	AngularVelocity.h	\
+	PitchRate.h	\
+	RollRate.h	\
+	AngularVelocityConfidence.h	\
+	AngularVConfidence.h	\
+	Non-motorDataExtension.h	\
+	DetectedObstacleList.h	\
+	DetectedObstacleData.h	\
+	ObstacleType.h	\
+	ObjectSize.h	\
+	SizeValue.h	\
+	ObjectSizeConfidence.h	\
+	SizeValueConfidence.h	\
+	SPAT.h	\
+	IntersectionStateList.h	\
+	IntersectionState.h	\
+	IntersectionStatusObject.h	\
+	PhaseList.h	\
+	Phase.h	\
+	PhaseStateList.h	\
+	PhaseState.h	\
+	LightState.h	\
+	TimeChangeDetails.h	\
+	UTCTiming.h	\
+	TimeCountingDown.h	\
+	PhaseID.h	\
+	TestMsg.h	\
+	BrakeSystemStatus.h	\
+	BrakePedalStatus.h	\
+	BrakeAppliedStatus.h	\
+	BrakeBoostApplied.h	\
+	TractionControlStatus.h	\
+	AntiLockBrakeStatus.h	\
+	StabilityControlStatus.h	\
+	AuxiliaryBrakeStatus.h	\
+	VehicleClassification.h	\
+	BasicVehicleClass.h	\
+	FuelType.h	\
+	VehicleEmergencyExtensions.h	\
+	ResponseType.h	\
+	SirenInUse.h	\
+	LightbarInUse.h	\
+	VehicleSafetyExtensions.h	\
+	PathHistory.h	\
+	FullPositionVector.h	\
+	GNSSstatus.h	\
+	PathHistoryPointList.h	\
+	PathHistoryPoint.h	\
+	PathPrediction.h	\
+	Confidence.h	\
+	RadiusOfCurvature.h	\
+	VehicleSize.h	\
+	VehicleWidth.h	\
+	VehicleLength.h	\
+	VehicleHeight.h	\
+	TransmissionState.h	\
+	VehicleEventFlags.h	\
+	ExteriorLights.h	\
+	VehIntentionAndRequest.h	\
+	IARData.h	\
+	PathPlanning.h	\
+	PathPlanningPoint.h	\
+	DriveBehavior.h	\
+	DriveRequest.h	\
+	ReqInfo.h	\
+	ReqStatus.h	\
+	Req-LaneChange.h	\
+	Req-ClearTheWay.h	\
+	Req-SignalPriority.h	\
+	Req-SensorSharing.h	\
+	ParkingRequest.h	\
+	Req-ParkingArea.h	\
+	VehiclePaymentMessage.h	\
+	RST.h	\
+	PaymentList.h	\
+	ApplicationParameter.h	\
+	PaymentInfo.h	\
+	PaymentEntityID.h	\
+	PaymentInfoType1.h	\
+	TollingNodeInfo.h	\
+	StationOrGantryId.h	\
+	TollingNodeType.h	\
+	TollingDirection.h	\
+	TollInfo.h	\
+	VSI.h	\
+	VPApplicationList.h	\
+	VPApplicationParameter.h	\
+	OBUPaymentInfo.h	\
+	OBUPaymentInfoType1.h	\
+	EquipmentClass.h	\
+	GBICCInfo.h	\
+	OBUInfo.h	\
+	OBUType.h	\
+	OBUMotionStatus.h	\
+	RandStr8.h	\
+	SysInfo.h	\
+	VehicleInfo.h	\
+	VehicleDimensions.h	\
+	TollingPos.h	\
+	PassedPos.h	\
+	PassedSitesInfo.h	\
+	Date.h	\
+	Action-Request.h	\
+	Action-Response.h	\
+	ReturnStatus.h	\
+	TransInfo.h	\
+	GetTollDataRq.h	\
+	GetTollDataRs.h	\
+	RangeOfFile.h	\
+	File.h	\
+	PartOfFile.h	\
+	GetSecureRq.h	\
+	GetSecureRs.h	\
+	SetTollDataRq.h	\
+	TransPara.h	\
+	SetTollDataRs.h	\
+	SetMMIRq.h	\
+	TollResult.h	\
+	AccountInfo.h	\
+	TransCredential.h	\
+	ChannelRq.h	\
+	ChannelRs.h	\
+	ChannelID.h	\
+	ApduList.h
+
+ASN_MODULE_HDRS+=ANY.h
+ASN_MODULE_SRCS+=ANY.c
+ASN_MODULE_HDRS+=OCTET_STRING.h
+ASN_MODULE_HDRS+=OPEN_TYPE.h
+ASN_MODULE_SRCS+=OPEN_TYPE.c
+ASN_MODULE_HDRS+=constr_CHOICE.h
+ASN_MODULE_HDRS+=BOOLEAN.h
+ASN_MODULE_SRCS+=BOOLEAN.c
+ASN_MODULE_HDRS+=IA5String.h
+ASN_MODULE_SRCS+=IA5String.c
+ASN_MODULE_HDRS+=INTEGER.h
+ASN_MODULE_SRCS+=INTEGER.c
+ASN_MODULE_HDRS+=NativeEnumerated.h
+ASN_MODULE_SRCS+=NativeEnumerated.c
+ASN_MODULE_HDRS+=NativeInteger.h
+ASN_MODULE_SRCS+=NativeInteger.c
+ASN_MODULE_HDRS+=asn_SEQUENCE_OF.h
+ASN_MODULE_SRCS+=asn_SEQUENCE_OF.c
+ASN_MODULE_HDRS+=asn_SET_OF.h
+ASN_MODULE_SRCS+=asn_SET_OF.c
+ASN_MODULE_SRCS+=constr_CHOICE.c
+ASN_MODULE_HDRS+=constr_SEQUENCE.h
+ASN_MODULE_SRCS+=constr_SEQUENCE.c
+ASN_MODULE_HDRS+=constr_SEQUENCE_OF.h
+ASN_MODULE_SRCS+=constr_SEQUENCE_OF.c
+ASN_MODULE_HDRS+=constr_SET_OF.h
+ASN_MODULE_SRCS+=constr_SET_OF.c
+ASN_MODULE_HDRS+=asn_application.h
+ASN_MODULE_SRCS+=asn_application.c
+ASN_MODULE_HDRS+=asn_ioc.h
+ASN_MODULE_HDRS+=asn_system.h
+ASN_MODULE_HDRS+=asn_codecs.h
+ASN_MODULE_HDRS+=asn_internal.h
+ASN_MODULE_SRCS+=asn_internal.c
+ASN_MODULE_HDRS+=asn_random_fill.h
+ASN_MODULE_SRCS+=asn_random_fill.c
+ASN_MODULE_HDRS+=asn_bit_data.h
+ASN_MODULE_SRCS+=asn_bit_data.c
+ASN_MODULE_SRCS+=OCTET_STRING.c
+ASN_MODULE_HDRS+=BIT_STRING.h
+ASN_MODULE_SRCS+=BIT_STRING.c
+ASN_MODULE_SRCS+=asn_codecs_prim.c
+ASN_MODULE_HDRS+=asn_codecs_prim.h
+ASN_MODULE_HDRS+=ber_tlv_length.h
+ASN_MODULE_SRCS+=ber_tlv_length.c
+ASN_MODULE_HDRS+=ber_tlv_tag.h
+ASN_MODULE_SRCS+=ber_tlv_tag.c
+ASN_MODULE_HDRS+=ber_decoder.h
+ASN_MODULE_SRCS+=ber_decoder.c
+ASN_MODULE_HDRS+=der_encoder.h
+ASN_MODULE_SRCS+=der_encoder.c
+ASN_MODULE_HDRS+=constr_TYPE.h
+ASN_MODULE_SRCS+=constr_TYPE.c
+ASN_MODULE_HDRS+=constraints.h
+ASN_MODULE_SRCS+=constraints.c
+ASN_MODULE_HDRS+=xer_support.h
+ASN_MODULE_SRCS+=xer_support.c
+ASN_MODULE_HDRS+=xer_decoder.h
+ASN_MODULE_SRCS+=xer_decoder.c
+ASN_MODULE_HDRS+=xer_encoder.h
+ASN_MODULE_SRCS+=xer_encoder.c
+ASN_MODULE_HDRS+=per_support.h
+ASN_MODULE_SRCS+=per_support.c
+ASN_MODULE_HDRS+=per_decoder.h
+ASN_MODULE_SRCS+=per_decoder.c
+ASN_MODULE_HDRS+=per_encoder.h
+ASN_MODULE_SRCS+=per_encoder.c
+ASN_MODULE_HDRS+=per_opentype.h
+ASN_MODULE_SRCS+=per_opentype.c
+ASN_MODULE_HDRS+=oer_decoder.h
+ASN_MODULE_HDRS+=oer_encoder.h
+ASN_MODULE_HDRS+=oer_support.h
+ASN_MODULE_SRCS+=oer_decoder.c
+ASN_MODULE_SRCS+=oer_encoder.c
+ASN_MODULE_SRCS+=oer_support.c
+ASN_MODULE_SRCS+=OPEN_TYPE_oer.c
+ASN_MODULE_SRCS+=INTEGER_oer.c
+ASN_MODULE_SRCS+=BIT_STRING_oer.c
+ASN_MODULE_SRCS+=OCTET_STRING_oer.c
+ASN_MODULE_SRCS+=NativeInteger_oer.c
+ASN_MODULE_SRCS+=NativeEnumerated_oer.c
+ASN_MODULE_SRCS+=constr_CHOICE_oer.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_oer.c
+ASN_MODULE_SRCS+=constr_SET_OF_oer.c
+
+ASN_MODULE_CFLAGS=
+
+lib_LTLIBRARIES+=libasncodec.la
+libasncodec_la_SOURCES=$(ASN_MODULE_SRCS) $(ASN_MODULE_HDRS)
+libasncodec_la_CPPFLAGS=-I$(top_srcdir)/
+libasncodec_la_CFLAGS=$(ASN_MODULE_CFLAGS)
+libasncodec_la_LDFLAGS=-lm

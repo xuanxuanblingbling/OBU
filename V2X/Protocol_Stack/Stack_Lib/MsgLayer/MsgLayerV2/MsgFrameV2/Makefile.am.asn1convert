@@ -1,0 +1,14 @@
+include Makefile.am.libasncodec
+
+bin_PROGRAMS += asn1convert
+asn1convert_CFLAGS = $(ASN_MODULE_CFLAGS) -DASN_PDU_COLLECTION 
+asn1convert_CPPFLAGS = -I$(top_srcdir)/
+asn1convert_LDADD = libasncodec.la
+asn1convert_SOURCES = \
+	converter-example.c\
+	pdu_collection.c
+regen: regenerate-from-asn1-source
+
+regenerate-from-asn1-source:
+	/opt/Asn1/bin/asn1c -gen-PER BSM.asn DefAcceleration.asn DefMotion.asn DefPosition.asn DefPositionOffset.asn DefTime.asn Map.asn MsgDayII.asn MsgFrame.asn PAM.asn Platooning.asn PSM.asn RSC.asn RSI.asn RSM.asn RTCM.asn SensorSharing.asn SignalPhaseAndTiming.asn TestMsg.asn VehBrake.asn VehClass.asn VehEmgExt.asn VehSafetyExt.asn VehSize.asn VehStatus.asn VIR.asn VPM.asn
+

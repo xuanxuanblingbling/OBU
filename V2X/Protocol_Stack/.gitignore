@@ -1,0 +1,57 @@
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+# User Define
+#.*
+Stack_Lib/Lib/*.so
+TEST/rsu_log/rsu.log
+TEST/test.out
+!Stack_Lib/Lib/iwall/libiwall_v2x.so
+!Stack_Lib/Lib/iwall/libiwall_v2x_api.so
+!Stack_Lib/Lib/libv2xutil.so
+!.gitignore
+*.gcno
