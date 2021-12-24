@@ -1,0 +1,210 @@
+syntax = "proto3";
+
+// OBU静态信息
+// 上线时上报一次
+message V2xObuBasicInfo {
+    int64 timestamp         = 1;    // UTC时间戳，毫秒
+    uint32 sequence         = 2;    // 上报序列号
+    string firmwareVersion  = 3;    // 固件版本
+    string appVersion       = 4;    // 应用程序版本
+    string plateNum         = 5;    // 车牌号
+    string deviceSN         = 6;    // 设备SN
+    int32 vehicleType       = 7;    // 车辆类型：参考《车辆类型表》1:特殊车辆; 10:普通轿车; 60:紧急车辆; BRT:52; 快速公交:53; 本地公交:54; 校车:55
+}
+
+// OBU实时状态，每秒一次
+message V2xObuState {
+    int64 timestamp         = 1;    // UTC时间戳，毫秒
+    uint32 sequence         = 2;    // 上报序列号
+    string id               = 3;    // V2X车辆ID
+    double latitude         = 4;    // degree
+    double longitude        = 5;    // degree
+    float elevation         = 6;    // m
+    float heading           = 7;    // degree 车辆方向角
+    float speed             = 8;    // m/s
+    int32 vehicleType       = 9;    // 车辆类型,如上
+    int32 laneId            = 10;   // 车辆所属车道ID
+    int32 nodeId            = 11;   // 车辆所在地图本地节点ID
+    int32 autopilotState    = 12;   // 自动驾驶状态：1：自动驾驶; 2:手动驾驶
+    int32 faultState        = 13;   // 故障状态。0:无故障；1:有故障
+    int32 gnssStatus        = 14;   // gnss工作状态 0:无效(默认);1:单点定位(E1);2:差分定位(E2);4:差分定位固定解(E4);5:差分定位浮点解(E5)
+}
+
+
+//驾驶状态
+enum DriveStatus {
+    DriveStatusUNKNOWN = 0;
+    DriveStatusAuto    = 1;         //自动驾驶
+    DriveStatusManual  = 2;         //手动驾驶
+}
+
+// 近场支付
+enum VNFPEventType {
+    VNFPNoneEvent      = 0;        //畅通
+    VNFPVehicleAproach = 1;        //车辆进场
+    VNFPVehicleExit    = 2;        //车辆出场
+}
+
+// 前方拥堵预警,TJW
+enum TrafficJamWarningLevel {
+    NoTrafficJam               =   0;          //畅通
+    BasicNoTrafficJam          =   1;          //基本畅通
+    LightTrafficJam            =   2;          //轻度拥堵
+    ModerateTrafficJam         =   3;          //中度拥堵
+    SeriousTrafficJam          =   4;          //重度拥堵
+}
+
+// 车内标牌IVS: In-Vehicle Signage
+enum InVehicleSignageType {
+    NoneInvehicleSign       = 0;             //无标牌事件
+    CrossRoads              = 1;             //交叉路口标牌
+    SharpTurn               = 2;             //急转弯
+    ReverseDetour           = 3;             //反向弯路
+    CautionPedestrians      = 11;            //注意行人
+    Rockfall                = 15;            //前方落石
+    Slippy                  = 17;            //易滑
+	Tunnel                  = 21;            //隧道
+    Danger                  = 37;            //道路危险
+    UnderConstruction       = 38;            //前方施工
+    ITSTestRoad             = 2001;          //智能网联测试路标牌
+}
+
+//HV类型
+enum TargetType {
+    TargetTypeUNKNOWN     = 0;    // 未定义，如果目标未识别，定位为0
+    TargetTypeMOTOR       = 1;    // 机动车
+    TargetTypeNON_MOTOR   = 2;    // 非机动车
+    TargetTypePEDESTRIAN  = 3;    // 行人
+    TargetTypeRSU         = 4;    // 交通灯
+    TargetTypeTRUCK       = 5;    // 卡车
+}
+
+enum WarningType {
+  WarningTypeNone   = 0;
+	WarningTypeV2V    = 101;
+	WarningTypeSPAT   = 102;
+	WarningTypeRTES   = 103;
+	WarningTypeRTSS   = 104;
+}
+
+message V2xSceneWarning {
+    int64 timestamp                       = 1;    // UTC时间戳，毫秒
+    uint32 sequence                       = 2;    // 上报序列号
+    //本车状态信息
+    string id                             = 3;    // 本车消息ID
+    string deviceSn                      = 4;    // OBU设备序列号
+    double hvLatitude                     = 5;    // 本车纬度
+    double hvLongitude                    = 6;    // 本车经度
+    double hvElevation                    = 7;    // 本车海拔
+    double hvHeading                      = 8;    // 车头朝向(0°~360°)，正北为 0，顺时针旋转的角度
+    double hvSpeed                        = 9;    // 本车速度m/s
+    DriveStatus driveStatus              = 10;   // 手动驾驶或者自动驾驶状态
+    //事件预警类型、子类型、优先级等
+    WarningType type                      = 11;   // 101：V2V事件，102：红绿灯事件，103：交通事件，104：交通标识
+    int32 subType                         = 12;   // 参考V2X事件标识标定说明
+    int32 priority                             = 13;   // 优先级 0-7 ，数字越小，优先级越高
+    string rsuDeviceId                    = 14;   // V2I事件时生效 RSU ID
+
+    //V2V 事件与感知事件预警子事件
+    string rvObjectId                     = 15;   // V2X事件参与者设备ID, 远车车辆 BSM消息 ID或者 目标监测ID
+    TargetType targetType                 = 16;         
+    int32 vehClass                        = 17;   // 预警事件类型为V2V时生效
+    string plateNum                       = 18;   // 预警事件类型为V2V时生效
+    int32  trackId                        = 19;   // 远车为感知事件识别的物体时生效
+    double rvLatitude                     = 20;   // V2X事件参与者纬度 V2V事件时为远车位置信息 V2I事件时为RSU位置信息
+    double rvLongitude                    = 21;   // V2X事件参与者经度 V2V事件时为远车位置信息 V2I事件时为RSU位置信息
+    double rvElevation                    = 22;   // V2X事件参与者海拔 V2V事件时为远车位置信息 V2I事件时为RSU位置信息
+    double rvHeading                      = 23;   // V2X事件参与者角度 V2V事件时为远车位置信息 V2I事件时为RSU位置信息
+    double rvSpeed                        = 24;   // V2X事件参与者速度m/s V2V事件时为远车位置信息 V2I事件时为RSU位置信息
+    double distToCollision                = 25;   // 到碰撞点距离m
+    double timeToCollision                = 26;   // 预测碰撞时间s
+
+    //限速预警子事件
+    float maxLimitedSpeed                 = 27;   // m/s 限速车速上限
+    float minLimitedSpeed                 = 28;   // m/s 限速车速下限
+
+    //近场支付子事件
+    VNFPEventType vnfpType                = 29;    // 近场支付子事件
+    int32 onSiteTime                      = 30;    // 在场内时间，单位分钟
+    float unitPriceOfHour                 = 31;    // 每小时单价
+    float totalCost                       = 32;    // 总费用，元
+
+    //闯红灯事件补充 (目前云控只需要phaseId)
+    int32 regionId                        = 33;    // 区域号
+    int32 intersectionId                  = 34;    // 路口号; 区域号路口号用于唯一标识信号机身份
+    int32 phaseId                         = 35;    // 红绿灯相位ID
+    float turnAngle                       = 36;    // 转向角度,度; 左转:dir>180&&(dir<315); 右转:dir>45&&dir<=180; 直行:其它角度; 调头:-180
+    int32 lightState                      = 37;    // 灯色状态 1:绿色; 2:红色; 3:黄色
+    int32 timeLeft                        = 38;    // 剩余时间 单位秒
+    float speedGuideCeil                  = 39;    // 绿波车速引导上限 
+    float speedGuideFloor                 = 40;    // 绿波车速引导下限
+
+    //前方拥堵预警补充
+    TrafficJamWarningLevel level          = 41;    // 拥堵等级
+    double startLatitude                  = 42;    // 拥堵起点经度(靠近车辆行驶方向),degree
+    double startLongitude                 = 43;    // 拥堵起点纬度(靠近车辆行驶方向),degree
+    double endLatitude                    = 44;    // 拥堵终点经度,degree
+    double endLongitude                   = 45;    // 拥堵终点维度,degree
+    float  distanceLeft                   = 46;    // 车辆到拥堵起点的距离
+    InVehicleSignageType ivsType          = 47;    // 车内标牌类型
+
+    //道路危险与交通标志预警
+    string description                    = 48;    // RSI事件描述信息
+
+    //预留信息
+    double reserved1                      = 49;
+    double reserved2                      = 50;
+    double reserved3                      = 51;
+}
+
+//FrameType的类型
+enum ObuSendFrameType {
+    ObuSendUnknownType  = 0;
+    ObuSendBasicState   = 1; // OBU基本实时状态
+    ObuSendStatistics   = 2; // OBU统计信息
+}
+
+//云端下发和查询配置
+message V2xObuConfig {
+    uint32 sequence         = 1;    // 唯一的序列号，用于区分响应
+    int64 timestamp         = 2;    // UTC时间戳，毫秒
+    int32 type              = 3;    // 1.下发配置，2.查询配置
+    string configContext    = 4;    // 下发配置内容 例如：{"server.conf":{"NLCenterAdd":"data.nebula- link.com","NLCenterPort":8883}} {"upload.conf":[{"FrameType":1,"periodInterval": 2}]}
+}
+
+//设置和查询配置的响应
+message V2xObuConfigRsp {
+	  uint32 sequence         = 1;    //唯一的序列号，用于区分响应
+    int64 timestamp         = 2;    // UTC时间戳，毫秒
+    uint32 ack              = 3;    //确认请求的顺序
+    int32 type              = 4;    // 1. 配置回复，2.查询回复
+    int32 result            = 5;   // 1.执行失败  2.执行成功 
+    string rspContent       = 6;    // 查询回复有此字段，例如{”server.conf”:{"NLCenterAdd":"data.nebula- link.com"}}
+}
+
+//OBU统计信息周期上报，目前实现上是针对所有的包数
+message V2xObuStatistics {
+    int64 timestamp          = 1;   // UTC时间戳，毫秒
+    uint32 sequence          = 2;    //唯一的序列号，用于区分响应
+    uint32 sendTotalByte     = 3;   //发送的总的字节数   //uint32
+    uint32 sendTotalPak      = 4;   //发送的总包数   
+    uint32 sendSuccessByte   = 5;   //发送成功的字节数
+    uint32 sengSuccessPak    = 6;   //发送成功的包数
+    uint32 recvTotalByte     = 7;   //收到数据总字节数
+    uint32 recvTotalPak      = 8;   //收到总包数
+    uint32 recvSuccessByte   = 9;   //成功收到的数据字节数
+    uint32 recvSuccessPak    = 10;   //成功收到的总包数
+}
+
+message V2xObuRunningStatus {
+    uint32 sequence         = 1;    // 上报序列号
+    int64 timestamp         = 2;    // UTC时间戳，毫秒
+    string ueid             = 3;    // V2X车辆ID
+    int32 gnssStatus        = 4;    // gnss工作状态 0:无效(默认);1:单点定位(E1);2:差分定位(E2);4:差分定位固定解(E4);5:差分定位浮点解(E5)
+    string obuTemp          = 5;    //设备温度 单位：摄氏度
+    string cpuUsage         = 6;    //CPU占用率 单位%
+    string memUsage         = 7;    //内存占有率 单位%
+    string diskUsage        = 8;    //磁盘占用率 单位%
+    int32 V2XState          = 9;    //V2X 运行状态，0-正常，1-异常
+    int32 state4G           = 10;   //4G 运行状态，0-异常，1-异常
+}
